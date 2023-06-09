@@ -16,7 +16,7 @@ Download and install the `pdftotext` command line tool from: https://www.xpdfrea
 
 ### Clone this repo.
    ```sh
-   git clone [https://github.com/moon0440/meme-generator.git](https://github.com/caolucl/python-meme-generator.git)
+   git clone https://github.com/caolucl/python-meme-generator.git
    ```
 ### Create virtual environment 
    ```sh
