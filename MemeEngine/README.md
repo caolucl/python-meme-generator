@@ -9,4 +9,4 @@ It uses the `pillow` library to resize thumbnails and draw text on them.
 ## Dependencies
 
 [pillow](https://pillow.readthedocs.io/en/stable/) => This package is used to
-create thumnails and draw text over images.
+create thumbnails and draw text over images.
