@@ -5,7 +5,7 @@ quotes.
 
 ## Dependencies
 
-[pandas](https://pandas.pydata.org/): for reading CSV files.
+[pandas](https://pandas.pydata.org/)=> for reading CSV files.
 
 [python-docx](https://python-docx.readthedocs.io/en/latest/) => for reading DOCX files.
 
