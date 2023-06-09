@@ -11,7 +11,7 @@ from QuoteEngine.TxtIngestor import TxtIngestor
 
 class Ingestor(IngestorInterface):
     """Define Ingestor class.
-    
+
     Ingestor contains four types of ingestos for each file tpye.
     """
 
@@ -20,7 +20,7 @@ class Ingestor(IngestorInterface):
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         """Retuen a list of quote from a file.
-        
+
         A function will inclue all ingestors.
         Based on the file type, a ingestor will be choosen to process the file.
         """

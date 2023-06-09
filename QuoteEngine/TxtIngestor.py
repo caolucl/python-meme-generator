@@ -1,3 +1,4 @@
+"""Create a class to extract data from a txt file."""
 # pylint: disable=unused-variable
 from typing import List
 import subprocess
@@ -8,11 +9,16 @@ from QuoteEngine.QuoteModel import QuoteModel
 
 
 class TxtIngestor(IngestorInterface):
+    """Define TxtIngestor class."""
 
     allowed_extensions = ['txt']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse function to extract data from txt file.
+
+        The function will return list of quotes from data.
+        """
         if not cls.can_ingest(path):
             raise Exception('cannot ingest exception')
         Quotes = []
