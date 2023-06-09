@@ -37,7 +37,7 @@ $ python meme.py --help
 usage: meme.py [--help] [--path PATH] [--body BODY] [--author AUTHOR]
 
 optional arguments:
-  --help            show this help message
+  --help show this help message
   --path PATH  Path to and image file.
   --body BODY  Body or Content written to image.
   --author AUTHOR Author name written to image.
