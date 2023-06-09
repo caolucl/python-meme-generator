@@ -4,7 +4,7 @@ A web application that generates random or custom memes.
 
 ### Prerequisites
 
-####Require 3 python libraries
+#### Require 3 python libraries
 * [Flask](https://github.com/pallets/flask): Simple web server interface
 * [Pandas](https://github.com/pandas-dev/pandas): Easy processing meme text from csv files
 * [Pillow](https://github.com/python-pillow/Pillow): Image processing to add text
