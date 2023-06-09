@@ -65,7 +65,6 @@ def meme_rand():
 
     img = random.choice(imgs)
     quote = random.choice(quotes)
-    print(quote)
     path = meme.make_meme(img, quote.body, quote.author)
     return render_template('meme.html', path=path)
 
@@ -84,7 +83,6 @@ def meme_post():
     author = request.form['author']
     tmp_req_img_path = './tmp/'
     tmp_img_path = download_image(image_url, tmp_req_img_path)
-    print(tmp_img_path)
     path = meme.make_meme(tmp_img_path, body, author)
     if os.path.exists(tmp_img_path):
         os.remove(tmp_img_path)
