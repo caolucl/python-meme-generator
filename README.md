@@ -1,6 +1,6 @@
 # Meme Generator
 
-A web application that generates random or custom memes.
+A python web application that generates memes from random images or image from url link.
 
 ## Prerequisites
 
