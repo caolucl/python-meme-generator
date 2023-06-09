@@ -34,7 +34,7 @@ Download and install the `pdftotext` command line tool from: https://www.xpdfrea
 
 ```sh
 $ python meme.py --help
-usage: meme.py [-h] [-p PATH] [-b BODY] [-a AUTHOR]
+usage: meme.py [--help] [--path PATH] [--body BODY] [--author AUTHOR]
 
 optional arguments:
   --help            show this help message
