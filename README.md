@@ -2,20 +2,32 @@
 
 A web application that generates random or custom memes.
 
-### Prerequisites
+## Prerequisites
 
-#### Require 3 python libraries
+### Require 3 python libraries
 * [Flask](https://github.com/pallets/flask): Simple web server interface
 * [Pandas](https://github.com/pandas-dev/pandas): Easy processing meme text from csv files
 * [Pillow](https://github.com/python-pillow/Pillow): Image processing to add text
 
-Install all dependencies given in the `requirements.txt` file using `pip`:
-```bash
-pip install -r requirements.txt
-```
-
+### Install program to convert from PDF to TXT
 Download and install the `pdftotext` command line tool from: https://www.xpdfreader.com/download.html
 
+## Download source code and create virtual environment
+
+### Clone this repo.
+   ```sh
+   git clone [https://github.com/moon0440/meme-generator.git](https://github.com/caolucl/python-meme-generator.git)
+   ```
+### Create virtual environment 
+   ```sh
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+### Install required python libraries
+   ```sh
+   pip install -r requirements.txt
+  ```
+  
 ## Usage
 
 ### Using the cli
@@ -31,7 +43,7 @@ optional arguments:
   --author AUTHOR Author name written to image.
 ```
 
-### Flask Web Development Server
+### Using Flask Web Development Server
 Starting dev server
 ```sh
 $ python app.py
