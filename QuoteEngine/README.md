@@ -5,11 +5,11 @@ quotes.
 
 ## Dependencies
 
-[pandas](https://pandas.pydata.org/)=> for reading CSV files.
+[pandas](https://pandas.pydata.org/): for reading CSV files.
 
-[python-docx](https://python-docx.readthedocs.io/en/latest/) => for reading DOCX files.
+[python-docx](https://python-docx.readthedocs.io/en/latest/): for reading DOCX files.
 
-[pdftotext](https://www.xpdfreader.com/pdftotext-man.html) => for converting PDF files to plain text
+[pdftotext](https://www.xpdfreader.com/pdftotext-man.html): for converting PDF files to plain text
 
 ## Usage
 
