@@ -35,12 +35,26 @@ def setup():
 
 def download_image(url, tmp_req_img_path):
     """Download a image from url and save to temp folder."""
-    response = requests.get(url, stream=True)
-    img_from_url = Image.open(response.raw)
-    os_path_basename = os.path.basename(url)
-    tmp_img_path = os.path.join(tmp_req_img_path, os_path_basename)
-    img_from_url.save(tmp_img_path)
-    return tmp_img_path
+    try:
+        response = requests.get(url, stream=True)
+        try:
+            img_from_url = Image.open(response.raw)
+            os_path_basename = os.path.basename(url)
+            tmp_img_path = os.path.join(tmp_req_img_path, os_path_basename)
+            img_from_url.save(tmp_img_path)
+            return tmp_img_path
+        except IOError as e:
+            return None
+        except Image.UnidentifiedImageError as e:
+            return None
+        except ValueError:
+            return None
+    except requests.HTTPError as e:
+        return None
+    except requests.RequestException as e:
+        return None
+    except IOError as e:
+        return None
 
 
 quotes, imgs = setup()
@@ -68,16 +82,8 @@ def meme_post():
     body = request.form['body']
     author = request.form['author']
     tmp_req_img_path = './tmp/'
-    try:
-        tmp_img_path = download_image(image_url, tmp_req_img_path)
-    except requests.exceptions.ConnectionError:
-        print("It looks like the image url is invalid")
-        return render_template('meme_error.html')
-    except UnidentifiedImageError:
-        print("It looks like the image url is invalid")
-        return render_template('meme_error.html')
-    except requests.exceptions.MissingSchema:
-        print("It looks like the image url is invalid")
+    tmp_img_path = download_image(image_url, tmp_req_img_path)
+    if tmp_img_path is None:
         return render_template('meme_error.html')
     path = meme.make_meme(tmp_img_path, body, author)
     if os.path.exists(tmp_img_path):

@@ -6,6 +6,7 @@ from PIL import Image, ImageFont, ImageDraw
 import datetime
 import random
 import string
+import textwrap
 
 
 class MemeEngine:
@@ -31,15 +32,17 @@ class MemeEngine:
         height = int(ratio*float(img.size[1]))
         img.thumbnail((width, height))
         path_font = './_data/font/LilitaOne-Regular.ttf'
-        font = ImageFont.truetype(path_font, size=20)
-        text_position = random.choice(range(30, height - 50))
+        font = ImageFont.truetype(path_font, size=15)
+        txt_x_position = random.randint(0, 100)
+        text_y_position = random.choice(range(30, height - 100))
         fill = 'white'
         stroke_fill = (255, 255, 255)
+        full_quote = f'{text}\n -{author}'
+        wrapper = textwrap.TextWrapper(width=40)
+        full_quote = wrapper.fill(text=full_quote)
         # Draw the text on image
         draw = ImageDraw.Draw(img)
-        draw.text((30, text_position), text, fill, font=font,
-                  stroke_width=1, stroke_fill=stroke_fill)
-        draw.text((40, text_position + 25), f"- {author}", fill, font,
+        draw.text((txt_x_position, text_y_position), full_quote, fill, font,
                   stroke_width=1, stroke_fill=stroke_fill)
         img.save(outfile, "JPEG")
         return outfile
