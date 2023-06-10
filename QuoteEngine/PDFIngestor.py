@@ -15,8 +15,10 @@ class PDFIngestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        """Parse function to convert a PDF file to txt and read lines in the txt file.
+        """Define parse function.
 
+        Parse function to convert a PDF file to txt
+        and read lines in the txt file.
         The function will return list of quotes from data.
         """
         if not cls.can_ingest(path):

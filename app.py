@@ -2,6 +2,7 @@
 import random
 import os
 from PIL import Image
+from PIL import UnidentifiedImageError
 import requests
 from flask import Flask, render_template, abort, request
 
@@ -34,27 +35,12 @@ def setup():
 
 def download_image(url, tmp_req_img_path):
     """Download a image from url and save to temp folder."""
-    try:
-        response = requests.get(url, stream=True)
-        if response.status_code == 200:
-            try:
-                img_from_url = Image.open(response.raw)
-                tmp_img_path = os.path.join(tmp_req_img_path, os.path.basename(url))
-                img_from_url.save(tmp_img_path)
-                return tmp_img_path
-            except IOError as e:
-                print("Error occurred while opening the image:", e)
-            except Image.UnidentifiedImageError as e:
-                print("Unknown file extension or corrupted image:", e)
-        else:
-            print("Failed to download image. Status code:", response.status_code)
-            return None
-    except requests.HTTPError as e:
-        print("HTTP error occurred:", e)
-    except requests.RequestException as e:
-        print("Error occurred while fetching the image:", e)
-    except IOError as e:
-        print("Error occurred while saving the image:", e)
+    response = requests.get(url, stream=True)
+    img_from_url = Image.open(response.raw)
+    os_path_basename = os.path.basename(url)
+    tmp_img_path = os.path.join(tmp_req_img_path, os_path_basename)
+    img_from_url.save(tmp_img_path)
+    return tmp_img_path
 
 
 quotes, imgs = setup()
@@ -82,7 +68,17 @@ def meme_post():
     body = request.form['body']
     author = request.form['author']
     tmp_req_img_path = './tmp/'
-    tmp_img_path = download_image(image_url, tmp_req_img_path)
+    try:
+        tmp_img_path = download_image(image_url, tmp_req_img_path)
+    except requests.exceptions.ConnectionError:
+        print("It looks like the image url is invalid")
+        return render_template('meme_error.html')
+    except UnidentifiedImageError:
+        print("It looks like the image url is invalid")
+        return render_template('meme_error.html')
+    except requests.exceptions.MissingSchema:
+        print("It looks like the image url is invalid")
+        return render_template('meme_error.html')
     path = meme.make_meme(tmp_img_path, body, author)
     if os.path.exists(tmp_img_path):
         os.remove(tmp_img_path)
